@@ -15,8 +15,7 @@ passport.use(
     callbackURL: config.PASSPORT_CALLBACK_URL,
   },
   (accessToken, refreshToken, profile, done) => {
-    console.log(profile, users.hasOwnProperty(profile.username))
-    if (!users.hasOwnProperty(profile.username)) {
+    if (!{}.hasOwnProperty.call({}, profile.username)) {
       users[profile.username] = profile;
       done(null, profile);
     } else {
@@ -26,10 +25,9 @@ passport.use(
 ));
 
 passport.serializeUser((user, done) => {
-  console.log("serializeUser", user)
   done(null, user.username)
 });
+
 passport.deserializeUser((username, done) => {
-  console.log("deserializeUser", username)
   done(null, users[username])
 });

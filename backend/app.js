@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import errorHandler from 'express-error-middleware';
+import {resolve} from 'path';
 
 import * as config from './config';
 import passport from './passport';
@@ -22,6 +23,23 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+if (config.DEV) {
+  console.log('Loading webpack')
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack')(config.WEBPACK_OPTIONS);
+  const compiler = webpack(webpackConfig);
+
+  app.use(require("webpack-dev-middleware")(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+  }));
+
+  if (config.HOT_RELOADING) {
+    app.use(require("webpack-hot-middleware")(compiler)); // eslint-disable-line global-require
+  }
+}
+
 app.use('/webhooks', webhooks);
 
 app.get('/auth/logout', (req, res) => {

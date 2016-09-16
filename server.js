@@ -3,7 +3,7 @@
 import Promise from 'bluebird';
 import http from 'http';
 
-import app from './src/backend/app';
+import app from './backend/app';
 
 global.Promise = Promise;
 const port = process.env.PORT || 3000;
