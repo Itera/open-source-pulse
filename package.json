@@ -14,7 +14,8 @@
     "extends": [
       "relekang/react",
       "relekang/flowtype"
-    ]
+    ],
+    "parser": "babel-eslint"
   },
   "repository": {
     "type": "git",
