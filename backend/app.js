@@ -6,10 +6,12 @@ import session from 'express-session';
 import errorHandler from 'express-error-middleware';
 import {resolve} from 'path';
 import redisStoreCreator from 'connect-redis';
+import graphqlHTTP from 'express-graphql';
 
 import * as config from './config';
 import passport from './passport';
 import webhooks from './routes/webhooks';
+import {rootValue, schema} from './schema';
 
 const app = express();
 export default app;
@@ -63,6 +65,12 @@ app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => res.redirect('/')
 );
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  rootValue,
+  graphiql: true,
+}));
 
 app.get('/', (req, res) => {
   const userInfo = _.omit(req.user, ['_raw', '_json', '_accessLevel', 'provider']);

@@ -1,5 +1,6 @@
 /* @flow */
 /* globals document */
+import {isEmpty} from 'lodash';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -7,7 +8,7 @@ const user = window.user;
 
 render((
   <div style={{textAlign: "center"}}>
-    {user ?
+    {!isEmpty(user) ?
       <div>
         <h1>👋 {user.displayName}</h1>
         <a href="/auth/logout">Logout</a>
