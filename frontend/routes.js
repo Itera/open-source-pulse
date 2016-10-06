@@ -1,4 +1,5 @@
 // @flow
+import Feed from './components/Feed';
 import Landing from './components/Landing';
 
 export type Route = {
@@ -9,6 +10,7 @@ export type Route = {
 }
 
 const routes: Array<Route> = [
+  { pattern: '/feed', component: Feed },
   { pattern: '/', exactly: true, component: Landing },
 ];
 
