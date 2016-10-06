@@ -46,7 +46,6 @@ export const rootValue = {
   users: () =>
     redis.hgetall('users')
       .then(result =>
-        console.log(result) ||
         Object.keys(result)
           .map(username => Object.assign({}, JSON.parse(result[username]), { username }))
       ),

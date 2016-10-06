@@ -8,10 +8,10 @@ import app from '../app';
 
 Promise.promisifyAll(request);
 
-it('GET / should return 200 with #app', t => {
+it('GET / should return 200 with #app', () => {
   return request(app)
     .get('/')
     .expect(200)
     .endAsync()
-    .then(response => t.ok(response.text.indexOf('id="app"')));
+    .then(response => expect(response.text.indexOf('id="app"')).not.toEqual(-1));
 });

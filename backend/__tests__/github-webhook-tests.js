@@ -17,16 +17,16 @@ function loadFixture(name) {
     .then(content => JSON.parse(content));
 }
 
-it('POST /webhooks/github should return error for bad signature', t => {
+it('POST /webhooks/github should return error for bad signature', () => {
   return request(app)
     .post('/webhooks/github')
     .set('x-hub-signature', 'wrong')
     .expect(403)
     .endAsync()
-    .then(response => t.is(response.text, 'The signature is incorrect'));
+    .then(response => expect(response.text).toEqual('The signature is incorrect'));
 });
 
-it('POST /webhooks/github should return 202 for correct signature', t => {
+it('POST /webhooks/github should return 202 for correct signature', () => {
   return loadFixture('ping')
     .then(fixture =>
       request(app)
@@ -36,5 +36,5 @@ it('POST /webhooks/github should return 202 for correct signature', t => {
         .expect(202)
         .endAsync()
     )
-    .then(response => t.is(response.text, 'Webhook received'));
+    .then(response => expect(response.text).toEqual('Webhook received'));
 });
