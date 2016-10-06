@@ -4,14 +4,13 @@ import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import errorHandler from 'express-error-middleware';
-import {resolve} from 'path';
 import redisStoreCreator from 'connect-redis';
 import graphqlHTTP from 'express-graphql';
 
 import * as config from './config';
 import passport from './passport';
 import webhooks from './routes/webhooks';
-import {rootValue, schema} from './schema';
+import { rootValue, schema } from './schema';
 
 const app = express();
 export default app;
@@ -76,7 +75,7 @@ app.get('/', (req, res) => {
   const userInfo = _.omit(req.user, ['_raw', '_json', '_accessLevel', 'provider']);
   res.render('index', {
     user: req.user,
-    userInfo: `window.user = ${JSON.stringify(userInfo)}`,
+    userInfo: `window.___user = ${JSON.stringify(userInfo)}`,
   });
 });
 

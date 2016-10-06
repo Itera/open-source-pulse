@@ -1,17 +1,26 @@
 /* @flow */
-/* globals document */
-import {isEmpty} from 'lodash';
+/* globals document, window */
+import { isEmpty } from 'lodash';
 import React from 'react';
 import { render } from 'react-dom';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
 
-const user = window.user;
+import App from './components/App';
+
+const user = window.___user; // eslint-disable-line no-underscore-dangle
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+  opts: {
+    credentials: 'same-origin',
+  },
+});
+const client = new ApolloClient({ networkInterface });
 
 render((
-  <div style={{textAlign: "center"}}>
-    {!isEmpty(user) ?
-      <div>
-        <h1>👋 {user.displayName}</h1>
-        <a href="/auth/logout">Logout</a>
-      </div> : <a href="/auth/github">Login</a> }
-  </div>
+  <ApolloProvider client={client}>
+    <div style={{ textAlign: 'center' }}>
+      {!isEmpty(user) ? <App /> : <a href="/auth/github">Login</a> }
+    </div>
+  </ApolloProvider>
 ), document.getElementById('root'));

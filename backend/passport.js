@@ -20,8 +20,8 @@ passport.use(
     callbackURL: `${config.PASSPORT_CALLBACK_DOMAIN}/auth/github/callback`,
   },
   (accessToken, refreshToken, profile, done) => {
-    let transformedProfile = Object.assign(profile, {
-      photos: profile.photos.map(({value}) => value)
+    const transformedProfile = Object.assign(profile, {
+      photos: profile.photos.map(({ value }) => value),
     });
 
     redis.hset('users', profile.username, JSON.stringify(transformedProfile))
