@@ -74,7 +74,7 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   const userInfo = _.omit(req.user, ['_raw', '_json', '_accessLevel', 'provider']);
   res.render('index', {
     user: req.user,

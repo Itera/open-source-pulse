@@ -41,12 +41,12 @@ export const rootValue = {
 
   user: ({ username }: { username: string}) =>
     redis.hget('users', username)
-      .then(result => Object.assign({}, result, { username })),
+      .then((result) => Object.assign({}, result, { username })),
 
   users: () =>
     redis.hgetall('users')
-      .then(result =>
+      .then((result) =>
         Object.keys(result)
-          .map(username => Object.assign({}, JSON.parse(result[username]), { username }))
+          .map((username) => Object.assign({}, JSON.parse(result[username]), { username }))
       ),
 };

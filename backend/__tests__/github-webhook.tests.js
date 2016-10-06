@@ -13,7 +13,7 @@ Promise.promisifyAll(request);
 function loadFixture(name) {
   const filePath = path.resolve(__dirname, `fixtures/webhooks/github/${name}.json`);
   return readFileAsync(filePath)
-    .then(content => JSON.parse(content));
+    .then((content) => JSON.parse(content));
 }
 
 it('POST /webhooks/github should return error for bad signature', () => {
@@ -22,12 +22,12 @@ it('POST /webhooks/github should return error for bad signature', () => {
     .set('x-hub-signature', 'wrong')
     .expect(403)
     .endAsync()
-    .then(response => expect(response.text).toEqual('The signature is incorrect'));
+    .then((response) => expect(response.text).toEqual('The signature is incorrect'));
 });
 
 it('POST /webhooks/github should return 202 for correct signature', () => {
   return loadFixture('ping')
-    .then(fixture =>
+    .then((fixture) =>
       request(app)
         .post('/webhooks/github')
         .set('x-hub-signature', 'sha1=72645c0907f90e87a68344dc8b653df9cdbe43df')
@@ -35,5 +35,5 @@ it('POST /webhooks/github should return 202 for correct signature', () => {
         .expect(202)
         .endAsync()
     )
-    .then(response => expect(response.text).toEqual('Webhook received'));
+    .then((response) => expect(response.text).toEqual('Webhook received'));
 });

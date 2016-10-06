@@ -40,6 +40,6 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((username, done) => {
   redis.hget('users', username)
-    .then(user => done(null, JSON.parse(user)))
-    .catch(error => done(error));
+    .then((user) => done(null, JSON.parse(user)))
+    .catch((error) => done(error));
 });
