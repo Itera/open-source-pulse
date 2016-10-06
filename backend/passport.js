@@ -1,33 +1,41 @@
 /* @flow */
 import passport from 'passport';
 import GitHubStrategy from 'passport-github';
+import Redis from 'ioredis';
 
 import * as config from './config';
 
 export default passport;
 
-const users = {};
+const redis = new Redis({
+  port: config.DB_PORT,
+  host: config.DB_HOST,
+  password: config.DB_PASSWORD,
+});
 
 passport.use(
   new GitHubStrategy({
     clientID: config.GITHUB_CLIENT_ID,
     clientSecret: config.GITHUB_CLIENT_SECRET,
-    callbackURL: config.PASSPORT_CALLBACK_URL,
+    callbackURL: `${config.PASSPORT_CALLBACK_DOMAIN}/auth/github/callback`,
   },
   (accessToken, refreshToken, profile, done) => {
-    if (!{}.hasOwnProperty.call({}, profile.username)) {
-      users[profile.username] = profile;
-      done(null, profile);
-    } else {
-      done(null, users[profile.username]);
-    }
+    redis.hset('users', profile.username, JSON.stringify(profile))
+      .then(() => {
+        done(null, profile);
+      })
+      .catch((error) => {
+        done(error);
+      });
   }
 ));
 
 passport.serializeUser((user, done) => {
-  done(null, user.username)
+  done(null, user.username);
 });
 
 passport.deserializeUser((username, done) => {
-  done(null, users[username])
+  redis.hget('users', username)
+    .then(user => done(null, JSON.parse(user)))
+    .catch(error => done(error));
 });

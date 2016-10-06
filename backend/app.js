@@ -1,9 +1,11 @@
 /* @flow */
+import _ from 'lodash';
 import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import errorHandler from 'express-error-middleware';
 import {resolve} from 'path';
+import redisStoreCreator from 'connect-redis';
 
 import * as config from './config';
 import passport from './passport';
@@ -15,10 +17,17 @@ export default app;
 app.set('view engine', 'jade');
 app.set('views', path.resolve(__dirname, './templates'));
 
+const RedisStore = redisStoreCreator(session);
 app.use(session({
   secret: 'my secret',
   resave: false,
   saveUninitialized: true,
+  store: new RedisStore({
+    host: config.DB_HOST,
+    port: config.DB_PORT,
+    pass: config.DB_PASSWORD,
+  }),
+  cookie: { secure: false },
 }));
 
 app.use(passport.initialize());
@@ -50,12 +59,18 @@ app.get('/auth/logout', (req, res) => {
 app.get('/auth/github', passport.authenticate('github', { scope: ['user:email', 'public_repo'] }));
 app.get('/auth/github/private', passport.authenticate('github', { scope: ['user:email', 'repo'] }));
 
-app.get(config.PASSPORT_CALLBACK_PATH,
+app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => res.redirect('/')
 );
 
-app.get('/', (req, res) => res.render('index', { user: req.user }));
+app.get('/', (req, res) => {
+  const userInfo = _.omit(req.user, ['_raw', '_json', '_accessLevel', 'provider']);
+  res.render('index', {
+    user: req.user,
+    userInfo: `window.user = ${JSON.stringify(userInfo)}`,
+  });
+});
 
 app.use(errorHandler.NotFoundMiddleware);
 app.use(errorHandler.ErrorsMiddleware);

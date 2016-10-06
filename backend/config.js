@@ -8,16 +8,31 @@ if (fs.existsSync(secretsPath)) {
   secrets = JSON.parse(fs.readFileSync(secretsPath).toString());
 }
 
-export const ENV = secrets.NODE_ENV || 'development';
-export const DEV = ENV === 'development';
-export const GITHUB_CLIENT_ID = secrets.GITHUB_CLIENT_ID;
-export const GITHUB_CLIENT_SECRET = secrets.GITHUB_CLIENT_SECRET;
-export const PASSPORT_CALLBACK_DOMAIN = secrets.PASSPORT_CALLBACK_DOMAIN || 'http://127.0.0.1:3000';
-export const PASSPORT_CALLBACK_PATH = secrets.PASSPORT_CALLBACK_PATH || '/auth/github/callback';
-export const PASSPORT_CALLBACK_URL = PASSPORT_CALLBACK_DOMAIN + PASSPORT_CALLBACK_PATH;
+const defaults = {
+  DB_HOST: 'localhost',
+  DB_PORT: '6379',
+  DB_PASSWORD: '',
+  NODE_ENV: 'development',
+  PASSPORT_CALLBACK_DOMAIN: 'http://127.0.0.1:3000',
+  GITHUB_CLIENT_ID: '',
+  GITHUB_CLIENT_SECRET: '',
+};
 
-export const DB_NAME = secrets.DB_NAME || 'open-source-pulse';
+function secret(key): string {
+  return process.env[key] || secrets[key] || defaults[key];
+}
+
+export const ENV = secret('NODE_ENV') || 'development';
+export const DEV = ENV === 'development';
+export const GITHUB_CLIENT_ID = secret('GITHUB_CLIENT_ID');
+export const GITHUB_CLIENT_SECRET = secret('GITHUB_CLIENT_SECRET');
+
+export const PASSPORT_CALLBACK_DOMAIN = secret('PASSPORT_CALLBACK_DOMAIN');
+
+export const DB_HOST = secret('DB_HOST');
+export const DB_PORT = secret('DB_PORT');
+export const DB_PASSWORD = secret('DB_PASSWORD');
 
 export const WEBPACK_OPTIONS = {
   dev: DEV,
-}
+};
