@@ -35,19 +35,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 if (config.DEV) {
-  console.log('Loading webpack')
+  /* eslint-disable global-require, import/no-extraneous-dependencies */
+  console.log('Loading webpack'); // eslint-disable-line no-console
   const webpack = require('webpack');
   const webpackConfig = require('./webpack')(config.WEBPACK_OPTIONS);
+
   const compiler = webpack(webpackConfig);
 
-  app.use(require("webpack-dev-middleware")(compiler, {
+  app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
   }));
 
   if (config.HOT_RELOADING) {
-    app.use(require("webpack-hot-middleware")(compiler)); // eslint-disable-line global-require
+    app.use(require('webpack-hot-middleware')(compiler));
   }
+  /* eslint-enable global-require, import/no-extraneous-dependencies */
 }
 
 app.use('/webhooks', webhooks);

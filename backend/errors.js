@@ -1,5 +1,6 @@
 /* @flow */
-export class BadSignatureError extends Error {
+export class BaseError extends Error {}
+export class BadSignatureError extends BaseError {
   status: number;
 
   constructor() {

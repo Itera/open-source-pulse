@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "relekang",
+    "relekang/react",
+    "relekang/flowtype"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-body-style": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.tests.js"]}]
+  }
+}

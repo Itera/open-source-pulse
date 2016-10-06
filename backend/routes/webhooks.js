@@ -13,7 +13,7 @@ function calculateSignature(payload = {}) {
   hmac.write(JSON.stringify(payload));
   hmac.end();
 
-  return `sha1=${(hmac.read() || "").toString()}`;
+  return `sha1=${(hmac.read() || '').toString()}`;
 }
 
 router.post('/github', (req, res, next) => {
@@ -21,7 +21,7 @@ router.post('/github', (req, res, next) => {
     return next(new BadSignatureError());
   }
 
-  res
+  return res
     .status(202)
     .send('Webhook received');
 });

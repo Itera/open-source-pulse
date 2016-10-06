@@ -1,24 +1,25 @@
 /* @flow */
+/* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
 
-module.exports = function (options: mixed) {
+module.exports = (options: mixed) => {
   return {
     devtool: options.dev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
-    entry: {bundle: './frontend/index.js'},
+    entry: { bundle: './frontend/index.js' },
     output: {
-      path: "/",
-      filename: "[name].js",
-      publicPath: "/",
+      path: '/',
+      filename: '[name].js',
+      publicPath: '/',
     },
     plugins: [
-      new webpack.ProvidePlugin({Promise: "bluebird"}),
+      new webpack.ProvidePlugin({ Promise: 'bluebird' }),
     ].concat(
       options.dev ? [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
       ] : [
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
+        new webpack.optimize.UglifyJsPlugin({ compressor: { warnings: false } }),
         new webpack.optimize.DedupePlugin(),
       ]
     ),
@@ -34,6 +35,6 @@ module.exports = function (options: mixed) {
           },
         },
       ],
-    }
+    },
   };
 };

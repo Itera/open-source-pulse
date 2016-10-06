@@ -1,6 +1,5 @@
 /* @flow */
 /* eslint-env jest */
-import 'babel-core/register';
 import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';

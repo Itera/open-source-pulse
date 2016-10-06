@@ -35,7 +35,7 @@ export const schema = buildSchema(`
 `);
 
 export const rootValue = {
-  feedItems: () => [ ],
+  feedItems: () => [],
 
   me: (obj: mixed, { user }: {user: string}) => _.omit(user, ['_raw', '_json']),
 
