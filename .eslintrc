@@ -9,6 +9,7 @@
     "arrow-body-style": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.tests.js"]}],
     "arrow-parens": [2, "always"],
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "react/sort-comp": 0
   }
 }
