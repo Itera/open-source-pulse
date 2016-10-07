@@ -1,5 +1,6 @@
 // @flow
 import Feed from './components/Feed';
+import EntryForm from './components/EntryForm';
 import Landing from './components/Landing';
 
 export type Route = {
@@ -10,6 +11,7 @@ export type Route = {
 }
 
 const routes: Array<Route> = [
+  { pattern: '/entry', component: EntryForm },
   { pattern: '/feed', component: Feed },
   { pattern: '/', exactly: true, component: Landing },
 ];

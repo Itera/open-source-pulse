@@ -1,7 +1,9 @@
 /* @flow */
 import { buildSchema } from 'graphql';
 
-import { getUser, getUsers } from './db';
+import { getFeedItems, getUser, getUsers, addFeedItem } from './db';
+import { FeedItemInput } from '../types/FeedItem';
+import type { User } from '../types/User';
 
 export const schema = buildSchema(`
   type User {
@@ -13,8 +15,15 @@ export const schema = buildSchema(`
 
   type FeedItem {
     timestamp: String,
-    title: String,
+    type: String,
     user: User,
+    url: String
+  }
+
+  input FeedItemInput {
+    type: String,
+    username: String,
+    url: String
   }
 
   type Query {
@@ -23,14 +32,25 @@ export const schema = buildSchema(`
     user(username: String): User,
     users: [User],
   }
+
+  type Mutation {
+    createFeedItem(feedItem: FeedItemInput): FeedItem
+  }
 `);
 
-export const rootValue = {
-  feedItems: () => [
-    { timestamp: new Date().toISOString(), title: 'Titles' },
-  ],
+type Options = {
+  user: User,
+}
 
-  me: (obj: mixed, { user }: {user: string}) => user,
+export const rootValue = {
+  feedItems: () => getFeedItems(),
+
+  me: (obj: mixed, { user }: Options) => user,
+
   user: ({ username }: { username: string}) => getUser(username),
+
   users: () => getUsers(),
+
+  createFeedItem: (input: { feedItem: FeedItemInput}, { user }: Options) =>
+    addFeedItem(input.feedItem, user),
 };

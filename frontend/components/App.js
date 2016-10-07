@@ -8,7 +8,7 @@ import { BrowserRouter, Miss } from 'react-router';
 
 import MatchWithSubRoutes from './MatchWithSubRoutes';
 import routes from '../routes';
-import type { User } from '../../types/user';
+import type { User } from '../../types/User';
 
 function NotFound() {
   return (

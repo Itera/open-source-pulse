@@ -3,14 +3,16 @@ import React from 'react';
 import moment from 'moment';
 
 type Props = {
-  title: string,
+  type: string,
+  url: string,
   timestamp: string,
 };
 
-function FeedItem({ title, timestamp }: Props) {
+function FeedItem({ type, url, timestamp }: Props) {
   return (
     <div>
-      <h2>{title}</h2>
+      <h2>{type}</h2>
+      <p>{url}</p>
       <em>{moment(new Date(timestamp)).format('DD.MM.YYYY')}</em>
     </div>
   );

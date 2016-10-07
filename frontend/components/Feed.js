@@ -7,15 +7,16 @@ import gql from 'graphql-tag';
 import FeedItem from './FeedItem';
 
 function Feed({ data }: Object) {
-  const renderFeedItems = map((feedItem) => <FeedItem key={feedItem.title} {...feedItem} />);
+  const renderFeedItems = map((feedItem) => <FeedItem key={feedItem.timestamp} {...feedItem} />);
   return <div>{renderFeedItems(data.feedItems)}</div>;
 }
 
 const FeedQuery = gql`
   query FeedQuery {
     feedItems {
-      title,
-      timestamp
+      timestamp,
+      type,
+      url
     }
   }
 `;
