@@ -49,19 +49,19 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-        {(!loading && me) &&
-          <div>
-            {!this.state.zen && [
-              <strong key={1}>👋 {me.displayName}</strong>,
-              <a key={2} href="/auth/logout">Logout</a>,
-            ]}
-            {routes.map((route, i) => (
-              <MatchWithSubRoutes key={i} {...route} />
-            ))}
+          {(!loading && me) &&
+            <div>
+              {!this.state.zen && [
+                <strong key={1}>👋 {me.displayName}</strong>,
+                <a key={2} href="/auth/logout">Logout</a>,
+              ]}
+              {routes.map((route, i) => (
+                <MatchWithSubRoutes key={i} {...route} />
+              ))}
 
-            <Miss component={NotFound} />
-          </div>
-        }
+              <Miss component={NotFound} />
+            </div>
+          }
         </div>
       </BrowserRouter>
     );
