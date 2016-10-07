@@ -1,16 +1,7 @@
 /* @flow */
-import _ from 'lodash';
 import { buildSchema } from 'graphql';
 
-import Redis from 'ioredis';
-
-import * as config from './config';
-
-const redis = new Redis({
-  port: config.DB_PORT,
-  host: config.DB_HOST,
-  password: config.DB_PASSWORD,
-});
+import { getUser, getUsers } from './db';
 
 export const schema = buildSchema(`
   type User {
@@ -39,16 +30,7 @@ export const rootValue = {
     { timestamp: new Date().toISOString(), title: 'Titles' },
   ],
 
-  me: (obj: mixed, { user }: {user: string}) => _.omit(user, ['_raw', '_json']),
-
-  user: ({ username }: { username: string}) =>
-    redis.hget('users', username)
-      .then((result) => Object.assign({}, result, { username })),
-
-  users: () =>
-    redis.hgetall('users')
-      .then((result) =>
-        Object.keys(result)
-          .map((username) => Object.assign({}, JSON.parse(result[username]), { username }))
-      ),
+  me: (obj: mixed, { user }: {user: string}) => user,
+  user: ({ username }: { username: string}) => getUser(username),
+  users: () => getUsers(),
 };
