@@ -14,9 +14,10 @@ passport.use(
     callbackURL: `${config.PASSPORT_CALLBACK_DOMAIN}/auth/github/callback`,
   },
   (accessToken, refreshToken, profile, done) => {
-    const transformedProfile = Object.assign(profile, {
+    const transformedProfile = {
+      ...profile,
       photos: profile.photos.map(({ value }) => value),
-    });
+    };
 
     saveUser(transformedProfile)
       .then(() => done(null, profile))
