@@ -38,6 +38,11 @@ module.exports = (options: mixed) => {
             cacheDirectory: true,
           },
         },
+        {
+          loaders: ['style-loader', 'css-loader'],
+          test: /\.css$/,
+          exclude: /node_modules/,
+        },
       ],
     },
   };

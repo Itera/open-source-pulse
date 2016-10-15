@@ -12,5 +12,5 @@ it('GET / should return 200 with #app', () => {
     .get('/')
     .expect(200)
     .endAsync()
-    .then((response) => expect(response.text.indexOf('id="app"')).not.toEqual(-1));
+    .then((response) => expect(response.text.indexOf('id="root"')).not.toEqual(-1));
 });
