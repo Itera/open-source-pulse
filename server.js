@@ -1,5 +1,6 @@
 /* @flow */
 /* eslint-disable no-console */
+import 'babel-polyfill';
 import Promise from 'bluebird';
 import http from 'http';
 
