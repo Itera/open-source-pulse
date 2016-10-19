@@ -7,21 +7,31 @@ import gql from 'graphql-tag';
 import { BrowserRouter, Miss } from 'react-router';
 
 import MatchWithSubRoutes from './MatchWithSubRoutes';
+import { withTheme } from './withContext';
+import NavBar from './NavBar';
 import routes from '../routes';
 import type { User } from '../../types/User';
+import type { Theme } from '../../types/theme';
 
 function NotFound() {
   return (
-    <h1>Could not find what you were looking for</h1>
+    <h2>Could not find what you were looking for</h2>
   );
 }
 
 type Props = {
+  theme: Theme,
   data: {
     loading: boolean,
     me: User,
   }
 };
+
+const style = (theme) => ({
+  background: theme.background,
+  textAlign: 'center',
+  height: '100%',
+});
 
 class App extends Component {
   props: Props;
@@ -45,20 +55,17 @@ class App extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const { loading, me } = this.props.data;
     return (
       <BrowserRouter>
-        <div>
+        <div style={theme && style(theme)}>
+          <NavBar zen={this.state.zen} />
           {(!loading && me) &&
-            <div>
-              {!this.state.zen && [
-                <strong key={1}>👋 {me.displayName}</strong>,
-                <a key={2} href="/auth/logout">Logout</a>,
-              ]}
+            <div style={{ paddingTop: '1rem' }}>
               {routes.map((route, i) => (
                 <MatchWithSubRoutes key={i} {...route} />
               ))}
-
               <Miss component={NotFound} />
             </div>
           }
@@ -77,4 +84,4 @@ const AppQuery = gql`
   }
 `;
 
-export default graphql(AppQuery)(App);
+export default withTheme(graphql(AppQuery)(App));
