@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 import { withTheme } from './withContext';
 import type { Theme } from '../../types/theme';
-import type { User } from '../../types/user';
+import type { User } from '../../types/User';
 
 type Props = {
   theme: Theme,
@@ -42,7 +42,7 @@ const NavBar = ({ theme, zen, data }: Props) => {
     <div className="NavBar" style={style(theme)}>
       <div className="container flex">
         <div style={{ lineHeight: '4rem', width: '80%', textAlign: 'left' }}>
-          <Link to="/" className="darken-hover" style={linkStyle(theme)}>Feed</Link>
+          <Link to="/feed" className="darken-hover" style={linkStyle(theme)}>Feed</Link>
           <Link to="/entry" className="darken-hover" style={linkStyle(theme)}>Post entry</Link>
         </div>
         <div style={{ lineHeight: '4rem', textAlign: 'right', width: '20%' }}>
