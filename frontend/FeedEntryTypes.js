@@ -20,7 +20,7 @@ const FeedEntryTypes = [
     feedText: 'is triaging issues on',
   },
   {
-    key: 'CREAED_PR',
+    key: 'CREATED_PR',
     description: 'Your pull request',
     feedText: 'created a PR on',
   },
