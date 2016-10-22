@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
-import { map } from 'lodash/fp';
+import { find, flow, get, map } from 'lodash/fp';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Redirect } from 'react-router';
 
+import { Button, FormWrapper, Input, Radio } from './forms';
 import FeedEntryTypes from '../FeedEntryTypes';
 
 class EntryForm extends React.Component {
@@ -23,24 +24,41 @@ class EntryForm extends React.Component {
     this.setState({ submitted: true });
   }
 
-  renderOptions = map((option) =>
-    <option key={option.key} value={option.key}>{option.description}</option>
-  );
-
   render() {
     if (this.state.submitted) {
       return <Redirect to="/feed" />;
     }
 
     return (
-      <form>
-        <select name="type" onChange={this.onChange} >
-          <option>Please select:</option>
-          {this.renderOptions(FeedEntryTypes)}
-        </select>
-        <input type="text" placeholder="URL" name="url" onChange={this.onChange} />
-        <input type="button" onClick={() => this.onSubmit(this.state)} value="Update" />
-      </form>
+      <FormWrapper>
+        <h2>Add an entry</h2>
+        {map(({ key, description }) =>
+          <Radio
+            key={key}
+            id={`radio-${key}`}
+            name="type"
+            value={key}
+            checked={this.state.type === key}
+            label={description}
+            onChange={this.onChange}
+          />
+        )(FeedEntryTypes)}
+
+        <Input
+          type="text"
+          name="url"
+          label="URL"
+          placeholder={
+            flow(
+              find({ key: this.state.type }),
+              get('urlPlaceholder'),
+            )(FeedEntryTypes) || 'Github url'
+          }
+          value={this.state.value}
+          onChange={this.onChange}
+        />
+        <Button onClick={() => this.onSubmit(this.state)}>Update</Button>
+      </FormWrapper>
     );
   }
 }

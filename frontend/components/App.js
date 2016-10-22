@@ -62,7 +62,7 @@ class App extends Component {
         <div style={theme && style(theme)}>
           <NavBar zen={this.state.zen} />
           {(!loading && me) &&
-            <div style={{ paddingTop: '1rem' }}>
+            <div style={{ paddingTop: '1rem' }} className="container">
               {routes.map((route, i) => (
                 <MatchWithSubRoutes key={i} {...route} />
               ))}
