@@ -6,10 +6,16 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router';
 
 import { Button, FormWrapper, Input, Radio } from './forms';
+import Error from './Error';
 import FeedEntryTypes from '../FeedEntryTypes';
 
 class EntryForm extends React.Component {
-  state = {};
+  state = {
+    type: '',
+    url: '',
+    invalid: false,
+    submitted: false,
+  };
   props: {
     onSubmit: Function,
   }
@@ -20,8 +26,12 @@ class EntryForm extends React.Component {
 
   onSubmit = () => {
     const { submitted, ...state } = this.state; // eslint-disable-line no-unused-vars
-    this.props.onSubmit(state);
-    this.setState({ submitted: true });
+    if (this.state.type && this.state.url) {
+      this.props.onSubmit(state);
+      this.setState({ submitted: true });
+    } else {
+      this.setState({ invalid: true });
+    }
   }
 
   render() {
@@ -32,6 +42,7 @@ class EntryForm extends React.Component {
     return (
       <FormWrapper>
         <h2>Add an entry</h2>
+        {this.state.invalid && <Error>Please fill out the every part of the form</Error>}
         {map(({ key, description }) =>
           <Radio
             key={key}
@@ -54,7 +65,7 @@ class EntryForm extends React.Component {
               get('urlPlaceholder'),
             )(FeedEntryTypes) || 'Github url'
           }
-          value={this.state.value}
+          value={this.state.url}
           onChange={this.onChange}
         />
         <Button onClick={() => this.onSubmit(this.state)}>Update</Button>
