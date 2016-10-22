@@ -16,7 +16,11 @@ const FeedQuery = gql`
     feedItems {
       timestamp,
       type,
-      url
+      url,
+      user {
+        displayName,
+        photos,
+      }
     }
   }
 `;
