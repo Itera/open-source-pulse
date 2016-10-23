@@ -24,18 +24,13 @@ module.exports = (options: mixed) => {
       ]
     ),
     module: {
-      rules: [
+      loaders: [
         {
           loader: 'babel-loader',
           test: /\.js$/,
           exclude: /node_modules/,
           query: {
-            presets: [['es2015', { modules: false }], 'es2016', 'es2017', 'react'],
-            plugins: [
-              'transform-class-properties',
-              'transform-class-properties',
-            ],
-            cacheDirectory: true,
+            cacheDirectory: false,
           },
         },
         {
