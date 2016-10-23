@@ -20,7 +20,7 @@ export class EntryForm extends React.Component {
     onSubmit: Function,
   }
 
-  onChange = (event) => {
+  onChange = (event: {target: {name: string, value: string}}) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
