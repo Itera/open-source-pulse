@@ -18,6 +18,7 @@ const FeedQuery = gql`
       type,
       url,
       user {
+        username,
         displayName,
         photos,
       }

@@ -5,10 +5,12 @@ import { get, find } from 'lodash/fp';
 import styled from 'styled-components';
 
 import FeedEntryTypes from '../FeedEntryTypes';
+import type { User } from '../../types/User';
 
 type Props = {
   type: string,
   url: string,
+  user: User,
   timestamp: string,
 };
 
@@ -39,16 +41,24 @@ const RepoLink = styled.a`
   color: black;
 `;
 
+const ProfileLink = styled.a`
+  color: black;
+  text-decoration: none;
+`;
+
 function FeedItem({ user, type, url, timestamp }: Props) {
+  const profileUrl = `https://github.com/${user.username}`;
   return (
     <div className="FeedItem">
       {user &&
         <div className="flex flex--center">
-          <ProfilePicture src={user.photos[0]} alt={user.displayName} />
+          <ProfileLink href={profileUrl}>
+            <ProfilePicture src={user.photos[0]} alt={user.displayName} />
+          </ProfileLink>
           <InfoContainer>
             <Date>{moment(new Date(timestamp)).format('DD.MM.YYYY')}</Date>
             <span>
-              <strong>{user.displayName}</strong>
+              <ProfileLink href={profileUrl}><strong>{user.displayName}</strong></ProfileLink>
               &nbsp;
               {get('feedText')(find({ key: type })(FeedEntryTypes))}
             </span>

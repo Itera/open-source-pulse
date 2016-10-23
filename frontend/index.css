@@ -11,6 +11,10 @@ html, body, #root {
   min-height: 100%;
 }
 
+a {
+  color: black;
+}
+
 .container {
   width: 70%;
   max-width: 900px;
