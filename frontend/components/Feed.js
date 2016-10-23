@@ -26,4 +26,4 @@ const FeedQuery = gql`
   }
 `;
 
-export default graphql(FeedQuery)(Feed);
+export default graphql(FeedQuery, { options: { pollInterval: 5000 } })(Feed);
