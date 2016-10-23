@@ -9,7 +9,7 @@ import { Button, FormWrapper, Input, Radio } from './forms';
 import Error from './Error';
 import FeedEntryTypes from '../FeedEntryTypes';
 
-class EntryForm extends React.Component {
+export class EntryForm extends React.Component {
   state = {
     type: '',
     url: '',
@@ -25,9 +25,9 @@ class EntryForm extends React.Component {
   }
 
   onSubmit = () => {
-    const { submitted, ...state } = this.state; // eslint-disable-line no-unused-vars
+    const { type, url } = this.state; // eslint-disable-line no-unused-vars
     if (this.state.type && this.state.url) {
-      this.props.onSubmit(state);
+      this.props.onSubmit({ type, url });
       this.setState({ submitted: true });
     } else {
       this.setState({ invalid: true });

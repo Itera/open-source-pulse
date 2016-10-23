@@ -1,7 +1,5 @@
 // @flow
-import _styled from 'styled-components';
-
-const styled = _styled.default;
+import styled from 'styled-components';
 
 const Error = styled.section`
   color: #d20a10

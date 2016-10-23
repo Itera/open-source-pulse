@@ -1,8 +1,6 @@
 // @flow
 import React from 'react';
-import _styled from 'styled-components';
-
-const styled = _styled.default;
+import styled from 'styled-components';
 
 export const FormWrapper = styled.section`
   text-align: left;
