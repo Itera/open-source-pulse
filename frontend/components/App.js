@@ -3,15 +3,14 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 
 import { BrowserRouter, Miss } from 'react-router';
 
 import MatchWithSubRoutes from './MatchWithSubRoutes';
-import { withTheme } from './withContext';
 import NavBar from './NavBar';
 import routes from '../routes';
 import type { User } from '../../types/User';
-import type { Theme } from '../../types/theme';
 
 function NotFound() {
   return (
@@ -20,18 +19,17 @@ function NotFound() {
 }
 
 type Props = {
-  theme: Theme,
   data: {
     loading: boolean,
     me: User,
   }
 };
 
-const style = (theme) => ({
-  background: theme.background,
-  textAlign: 'center',
-  height: '100%',
-});
+const AppWrapper = styled.div`
+  background: ${(props) => props.theme.background};
+  text-align: center;
+  height: 100%;
+`;
 
 class App extends Component {
   props: Props;
@@ -55,11 +53,10 @@ class App extends Component {
   }
 
   render() {
-    const { theme } = this.props;
     const { loading, me } = this.props.data;
     return (
       <BrowserRouter>
-        <div style={theme && style(theme)}>
+        <AppWrapper>
           <NavBar zen={this.state.zen} />
           {(!loading && me) &&
             <div style={{ paddingTop: '1rem' }}>
@@ -69,7 +66,7 @@ class App extends Component {
               <Miss component={NotFound} />
             </div>
           }
-        </div>
+        </AppWrapper>
       </BrowserRouter>
     );
   }
@@ -84,4 +81,4 @@ const AppQuery = gql`
   }
 `;
 
-export default withTheme(graphql(AppQuery)(App));
+export default graphql(AppQuery)(App);

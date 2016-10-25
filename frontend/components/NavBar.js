@@ -3,8 +3,8 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import { withTheme } from './withContext';
 import type { Theme } from '../../types/theme';
 import type { User } from '../../types/User';
 
@@ -17,39 +17,39 @@ type Props = {
   }
 }
 
-const style = (theme) => ({
-  background: theme && theme.navbar.background,
-  color: theme && theme.navbar.color,
-  height: '4rem',
-  textTransform: 'uppercase',
-});
+const NavBarWrapper = styled.div`
+  background: ${(props) => props.theme.navbar.background};
+  color: ${(props) => props.theme.navbar.color};
+  height: 4rem;
+  text-transform: uppercase;
+`;
 
-const linkStyle = (theme) => ({
-  color: theme && theme.navbar.color,
-  padding: '0 1rem',
-  lineHeight: '4rem',
-  display: 'inline-block',
-  textDecoration: 'none',
-  textTransform: 'uppercase',
-});
+const NavBarLink = styled(Link)`
+  color: ${(props) => props.theme.navbar.color};
+  padding: 0 1rem;
+  line-height: 4rem;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+`;
 
-const NavBar = ({ theme, zen, data }: Props) => {
+const NavBar = ({ zen, data }: Props) => {
   if (zen) {
     return <span />;
   }
 
   return (
-    <div className="NavBar" style={style(theme)}>
+    <NavBarWrapper className="NavBar">
       <div className="container flex">
         <div style={{ lineHeight: '4rem', width: '80%', textAlign: 'left' }}>
-          <Link to="/feed" className="darken-hover" style={linkStyle(theme)}>Feed</Link>
-          <Link to="/entry" className="darken-hover" style={linkStyle(theme)}>Post entry</Link>
+          <NavBarLink to="/feed" className="darken-hover">Feed</NavBarLink>
+          <NavBarLink to="/entry" className="darken-hover">Post entry</NavBarLink>
         </div>
         <div style={{ lineHeight: '4rem', textAlign: 'right', width: '20%' }}>
           {data.me && data.me.displayName}
         </div>
       </div>
-    </div>
+    </NavBarWrapper>
   );
 };
 
@@ -62,4 +62,4 @@ const NavBarQuery = gql`
   }
 `;
 
-export default withTheme(graphql(NavBarQuery)(NavBar));
+export default graphql(NavBarQuery)(NavBar);

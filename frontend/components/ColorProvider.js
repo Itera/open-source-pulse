@@ -1,6 +1,8 @@
 // @flow
 /* globals document */
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
+
 import type { Theme } from '../../types/theme';
 
 const LIGHT_THEME: Theme = {
@@ -26,10 +28,6 @@ export default class ColorProvider extends Component {
   props: {children: React$Element<>};
   state: {theme: Theme} = { theme: LIGHT_THEME };
 
-  getChildContext() {
-    return { theme: this.state.theme };
-  }
-
   componentWillMount = () => {
     document.addEventListener('keydown', this.onKeyDown, false);
   };
@@ -47,10 +45,8 @@ export default class ColorProvider extends Component {
   }
 
   render() {
-    return this.props.children;
+    return (
+      <ThemeProvider theme={this.state.theme}>{this.props.children}</ThemeProvider>
+    );
   }
 }
-
-ColorProvider.childContextTypes = {
-  theme: React.PropTypes.object,
-};
