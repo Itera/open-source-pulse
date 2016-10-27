@@ -186,7 +186,7 @@ exports[`EntryForm should render correctly 1`] = `
         <styled.label
           htmlFor={undefined}>
           <label
-            className="etjhIf"
+            className="fpQlwB"
             htmlFor={undefined}>
             <span>
               URL
