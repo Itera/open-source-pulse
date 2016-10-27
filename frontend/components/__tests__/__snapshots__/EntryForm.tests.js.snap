@@ -1,0 +1,224 @@
+exports[`EntryForm should render correctly 1`] = `
+<EntryForm>
+  <styled.section>
+    <section
+      className="dZUSMd">
+      <h2>
+        Add an entry
+      </h2>
+      <Radio
+        checked={false}
+        id="radio-WORKING_ON_ISSUE"
+        label="A github issue you wish to fix"
+        name="type"
+        onChange={[Function]}
+        value="WORKING_ON_ISSUE">
+        <styled.label
+          htmlFor="radio-WORKING_ON_ISSUE">
+          <label
+            className="hnLhiS"
+            htmlFor="radio-WORKING_ON_ISSUE">
+            <styled.input
+              checked={false}
+              id="radio-WORKING_ON_ISSUE"
+              name="type"
+              onChange={[Function]}
+              type="radio"
+              value="WORKING_ON_ISSUE">
+              <input
+                checked={false}
+                className="dKarGh"
+                id="radio-WORKING_ON_ISSUE"
+                name="type"
+                onChange={[Function]}
+                type="radio"
+                value="WORKING_ON_ISSUE" />
+            </styled.input>
+            <span>
+              A github issue you wish to fix
+            </span>
+          </label>
+        </styled.label>
+      </Radio>
+      <Radio
+        checked={false}
+        id="radio-CREATED_ISSUE"
+        label="A github issue you have created"
+        name="type"
+        onChange={[Function]}
+        value="CREATED_ISSUE">
+        <styled.label
+          htmlFor="radio-CREATED_ISSUE">
+          <label
+            className="hnLhiS"
+            htmlFor="radio-CREATED_ISSUE">
+            <styled.input
+              checked={false}
+              id="radio-CREATED_ISSUE"
+              name="type"
+              onChange={[Function]}
+              type="radio"
+              value="CREATED_ISSUE">
+              <input
+                checked={false}
+                className="dKarGh"
+                id="radio-CREATED_ISSUE"
+                name="type"
+                onChange={[Function]}
+                type="radio"
+                value="CREATED_ISSUE" />
+            </styled.input>
+            <span>
+              A github issue you have created
+            </span>
+          </label>
+        </styled.label>
+      </Radio>
+      <Radio
+        checked={false}
+        id="radio-CODING_REPOSITORIY"
+        label="The project repo you wish to send a request to (if no issue exists)"
+        name="type"
+        onChange={[Function]}
+        value="CODING_REPOSITORIY">
+        <styled.label
+          htmlFor="radio-CODING_REPOSITORIY">
+          <label
+            className="hnLhiS"
+            htmlFor="radio-CODING_REPOSITORIY">
+            <styled.input
+              checked={false}
+              id="radio-CODING_REPOSITORIY"
+              name="type"
+              onChange={[Function]}
+              type="radio"
+              value="CODING_REPOSITORIY">
+              <input
+                checked={false}
+                className="dKarGh"
+                id="radio-CODING_REPOSITORIY"
+                name="type"
+                onChange={[Function]}
+                type="radio"
+                value="CODING_REPOSITORIY" />
+            </styled.input>
+            <span>
+              The project repo you wish to send a request to (if no issue exists)
+            </span>
+          </label>
+        </styled.label>
+      </Radio>
+      <Radio
+        checked={false}
+        id="radio-TRIAGING_REPOSITORY"
+        label="Triaging issues on repo"
+        name="type"
+        onChange={[Function]}
+        value="TRIAGING_REPOSITORY">
+        <styled.label
+          htmlFor="radio-TRIAGING_REPOSITORY">
+          <label
+            className="hnLhiS"
+            htmlFor="radio-TRIAGING_REPOSITORY">
+            <styled.input
+              checked={false}
+              id="radio-TRIAGING_REPOSITORY"
+              name="type"
+              onChange={[Function]}
+              type="radio"
+              value="TRIAGING_REPOSITORY">
+              <input
+                checked={false}
+                className="dKarGh"
+                id="radio-TRIAGING_REPOSITORY"
+                name="type"
+                onChange={[Function]}
+                type="radio"
+                value="TRIAGING_REPOSITORY" />
+            </styled.input>
+            <span>
+              Triaging issues on repo
+            </span>
+          </label>
+        </styled.label>
+      </Radio>
+      <Radio
+        checked={false}
+        id="radio-CREATED_PR"
+        label="Your pull request"
+        name="type"
+        onChange={[Function]}
+        value="CREATED_PR">
+        <styled.label
+          htmlFor="radio-CREATED_PR">
+          <label
+            className="hnLhiS"
+            htmlFor="radio-CREATED_PR">
+            <styled.input
+              checked={false}
+              id="radio-CREATED_PR"
+              name="type"
+              onChange={[Function]}
+              type="radio"
+              value="CREATED_PR">
+              <input
+                checked={false}
+                className="dKarGh"
+                id="radio-CREATED_PR"
+                name="type"
+                onChange={[Function]}
+                type="radio"
+                value="CREATED_PR" />
+            </styled.input>
+            <span>
+              Your pull request
+            </span>
+          </label>
+        </styled.label>
+      </Radio>
+      <Input
+        label="URL"
+        name="url"
+        onChange={[Function]}
+        placeholder="Github url"
+        type="text"
+        value="">
+        <styled.label
+          htmlFor={undefined}>
+          <label
+            className="fpQlwB"
+            htmlFor={undefined}>
+            <span>
+              URL
+            </span>
+            <styled.input
+              id="url"
+              name="url"
+              onChange={[Function]}
+              placeholder="Github url"
+              type="text"
+              value="">
+              <input
+                className="dKarGh"
+                id="url"
+                name="url"
+                onChange={[Function]}
+                placeholder="Github url"
+                type="text"
+                value="" />
+            </styled.input>
+          </label>
+        </styled.label>
+      </Input>
+      <styled.button
+        onClick={[Function]}>
+        <button
+          className="flabqw"
+          onClick={[Function]}>
+          Update
+        </button>
+      </styled.button>
+    </section>
+  </styled.section>
+</EntryForm>
+`;

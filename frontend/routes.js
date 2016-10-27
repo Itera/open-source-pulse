@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable import/no-named-as-default */
 import Feed from './components/Feed';
 import EntryForm from './components/EntryForm';
 import Landing from './components/Landing';
