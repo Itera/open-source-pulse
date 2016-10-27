@@ -14,5 +14,5 @@
  */
 
 declare module 'styled-components' {
-  declare module.exports: (element: string) => (css: string) => ReactClass<*>;
+  declare module.exports: any;
 }
