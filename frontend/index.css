@@ -11,6 +11,10 @@ html, body, #root {
   min-height: 100%;
 }
 
+a {
+  color: black;
+}
+
 .container {
   width: 70%;
   max-width: 900px;
@@ -21,6 +25,6 @@ html, body, #root {
   display: flex;
 }
 
-.darken-hover:hover {
-  background: rgba(0, 0, 0, 0.2);
+.flex--center {
+  align-items: center;
 }

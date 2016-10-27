@@ -16,9 +16,14 @@ const FeedQuery = gql`
     feedItems {
       timestamp,
       type,
-      url
+      url,
+      user {
+        username,
+        displayName,
+        photos,
+      }
     }
   }
 `;
 
-export default graphql(FeedQuery)(Feed);
+export default graphql(FeedQuery, { options: { pollInterval: 5000 } })(Feed);
