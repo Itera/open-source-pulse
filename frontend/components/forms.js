@@ -36,6 +36,7 @@ export const Label = styled.label`
 
   input {
     margin-left: 0.4rem;
+    width: 100%;
   }
 `;
 
