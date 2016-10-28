@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import type { Theme } from '../../types/theme';
 
 const LIGHT_THEME: Theme = {
+  red: '#d20a10',
   background: '#fafafa',
   color: '#000000',
   navbar: {
@@ -15,6 +16,7 @@ const LIGHT_THEME: Theme = {
 };
 
 const DARK_THEME: Theme = {
+  red: '#d20a10',
   background: '#333333',
   color: '#fafafa',
   navbar: {
