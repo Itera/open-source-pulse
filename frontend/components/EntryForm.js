@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 import { Redirect } from 'react-router';
 
 import { Button, FormWrapper, Input, Radio } from './forms';
+import displayGraphqlError from './displayGraphqlError';
 import Error from './Error';
 import FeedEntryTypes from '../FeedEntryTypes';
 
@@ -87,4 +88,4 @@ export default graphql(feedItemMutation, {
   props: ({ mutate }) => ({
     onSubmit: (feedItem) => mutate({ variables: { feedItem } }),
   }),
-})(EntryForm);
+})(displayGraphqlError(EntryForm));

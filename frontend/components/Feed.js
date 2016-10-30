@@ -4,6 +4,7 @@ import { map } from 'lodash/fp';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import displayGraphqlError from './displayGraphqlError';
 import FeedItem from './FeedItem';
 
 function Feed({ data }: Object) {
@@ -26,4 +27,4 @@ const FeedQuery = gql`
   }
 `;
 
-export default graphql(FeedQuery, { options: { pollInterval: 5000 } })(Feed);
+export default graphql(FeedQuery, { options: { pollInterval: 5000 } })(displayGraphqlError(Feed));
