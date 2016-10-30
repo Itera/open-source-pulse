@@ -10,6 +10,7 @@ const redis = new Redis({
   port: config.DB_PORT,
   host: config.DB_HOST,
   password: config.DB_PASSWORD,
+  db: config.DB_NAME,
 });
 
 export function getUser(username: string): Promise<User> {
