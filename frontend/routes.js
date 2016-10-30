@@ -2,7 +2,6 @@
 /* eslint-disable import/no-named-as-default */
 import Feed from './components/Feed';
 import EntryForm from './components/EntryForm';
-import Landing from './components/Landing';
 
 export type Route = {
   pattern: string,
@@ -14,7 +13,7 @@ export type Route = {
 const routes: Array<Route> = [
   { pattern: '/entry', component: EntryForm },
   { pattern: '/feed', component: Feed },
-  { pattern: '/', exactly: true, component: Landing },
+  { pattern: '/', exactly: true, component: Feed },
 ];
 
 export default routes;
