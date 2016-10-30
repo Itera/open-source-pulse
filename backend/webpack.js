@@ -1,6 +1,6 @@
 /* @flow */
 /* eslint-disable import/no-extraneous-dependencies */
-import webpack from 'webpack';
+const webpack = require('webpack');
 
 module.exports = (options: mixed) => {
   return {
