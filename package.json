@@ -81,6 +81,6 @@
     "react-compose": "^1.7.0",
     "react-dom": "^15.3.1",
     "react-router": "^4.0.0-alpha.4",
-    "styled-components": "^1.0.8"
+    "styled-components": "^1.0.10"
   }
 }
