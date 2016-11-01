@@ -12,7 +12,7 @@ const FeedEntryTypes = [
     urlPlaceholder: 'URL to issue',
   },
   {
-    key: 'CODING_REPOSITORIY',
+    key: 'CODING_REPOSITORY',
     description: 'The project repo you wish to send a request to (if no issue exists)',
     feedText: 'is working on',
     urlPlaceholder: 'URL to repository',

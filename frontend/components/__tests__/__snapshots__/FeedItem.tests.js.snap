@@ -1,0 +1,101 @@
+exports[`FeedItem should render correctly for type CODING_REPOSITORIY 1`] = `
+<div
+  className="FeedItem">
+  <div
+    className="flex flex--center">
+    <styled.a
+      href="https://github.com/albus">
+      <styled.img
+        alt="Albus Dumbledore"
+        src="albus.png" />
+    </styled.a>
+    <styled.span>
+      <styled.em>
+        01.11.2016
+      </styled.em>
+      <span>
+        <styled.a
+          href="https://github.com/albus">
+          <strong>
+            Albus Dumbledore
+          </strong>
+        </styled.a>
+         
+        is working on
+      </span>
+      <styled.a
+        href="https://github.com/flowtype/flow-typed">
+        flowtype / flow-typed
+      </styled.a>
+    </styled.span>
+  </div>
+</div>
+`;
+
+exports[`FeedItem should render correctly for type CREATED_PR 1`] = `
+<div
+  className="FeedItem">
+  <div
+    className="flex flex--center">
+    <styled.a
+      href="https://github.com/albus">
+      <styled.img
+        alt="Albus Dumbledore"
+        src="albus.png" />
+    </styled.a>
+    <styled.span>
+      <styled.em>
+        01.11.2016
+      </styled.em>
+      <span>
+        <styled.a
+          href="https://github.com/albus">
+          <strong>
+            Albus Dumbledore
+          </strong>
+        </styled.a>
+         
+        created a PR on
+      </span>
+      <styled.a
+        href="https://github.com/flowtype/flow-typed/pull/406">
+        flowtype / flow-typed #406
+      </styled.a>
+    </styled.span>
+  </div>
+</div>
+`;
+
+exports[`FeedItem should render correctly for type WORKING_ON_ISSUE 1`] = `
+<div
+  className="FeedItem">
+  <div
+    className="flex flex--center">
+    <styled.a
+      href="https://github.com/albus">
+      <styled.img
+        alt="Albus Dumbledore"
+        src="albus.png" />
+    </styled.a>
+    <styled.span>
+      <styled.em>
+        01.11.2016
+      </styled.em>
+      <span>
+        <styled.a
+          href="https://github.com/albus">
+          <strong>
+            Albus Dumbledore
+          </strong>
+        </styled.a>
+         
+        is working on
+      </span>
+      <styled.a
+        href="https://github.com/Itera/open-source-pulse/issues/16">
+        Itera / open-source-pulse #16
+      </styled.a>
+    </styled.span>
+  </div>
+</div>
+`;

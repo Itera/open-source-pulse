@@ -76,31 +76,31 @@ exports[`EntryForm should render correctly 1`] = `
       </Radio>
       <Radio
         checked={false}
-        id="radio-CODING_REPOSITORIY"
+        id="radio-CODING_REPOSITORY"
         label="The project repo you wish to send a request to (if no issue exists)"
         name="type"
         onChange={[Function]}
-        value="CODING_REPOSITORIY">
+        value="CODING_REPOSITORY">
         <styled.label
-          htmlFor="radio-CODING_REPOSITORIY">
+          htmlFor="radio-CODING_REPOSITORY">
           <label
             className="hnLhiS"
-            htmlFor="radio-CODING_REPOSITORIY">
+            htmlFor="radio-CODING_REPOSITORY">
             <styled.input
               checked={false}
-              id="radio-CODING_REPOSITORIY"
+              id="radio-CODING_REPOSITORY"
               name="type"
               onChange={[Function]}
               type="radio"
-              value="CODING_REPOSITORIY">
+              value="CODING_REPOSITORY">
               <input
                 checked={false}
                 className="dKarGh"
-                id="radio-CODING_REPOSITORIY"
+                id="radio-CODING_REPOSITORY"
                 name="type"
                 onChange={[Function]}
                 type="radio"
-                value="CODING_REPOSITORIY" />
+                value="CODING_REPOSITORY" />
             </styled.input>
             <span>
               The project repo you wish to send a request to (if no issue exists)
