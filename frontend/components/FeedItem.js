@@ -15,7 +15,8 @@ type Props = {
 };
 
 function titleFromUrl(url) {
-  return (url.match(/com\/([^/]+)\/([^/]+)/) || []).slice(1).join(' / ');
+  const parts = url.match(/com\/([^/]+)\/([^/]+)(?:\/(?:pull|issues)\/(\d+))?/) || [];
+  return parts.slice(1, 3).join(' / ') + (parts[3] ? ` #${parts[3]}` : '');
 }
 
 const Date = styled.em`
