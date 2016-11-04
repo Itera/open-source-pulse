@@ -1,13 +1,13 @@
-/* @flow */
 /* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
+require('babel-register');
 
-module.exports = (options: mixed) => {
+module.exports = (options) => {
   return {
     devtool: options.dev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
     entry: { bundle: './frontend/index.js' },
     output: {
-      path: '/',
+      path: './dist',
       filename: '[name].js',
       publicPath: '/',
     },
