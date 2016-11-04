@@ -18,6 +18,8 @@ export default app;
 app.set('view engine', 'jade');
 app.set('views', path.resolve(__dirname, './templates'));
 
+app.use(express.static('./dist'));
+
 const RedisStore = redisStoreCreator(session);
 app.use(session({
   secret: 'my secret',
