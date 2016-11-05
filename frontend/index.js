@@ -28,6 +28,7 @@ const LoginButton = styled.a`
   color: #d20a10;
   text-transform: uppercase;
   text-decoration: none;
+  display: inline-block;
 `;
 
 render((
