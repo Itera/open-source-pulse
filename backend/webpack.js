@@ -7,7 +7,7 @@ module.exports = (options) => {
     devtool: options.dev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
     entry: { bundle: './frontend/index.js' },
     output: {
-      path: './dist',
+      path: options.dev ? '/' : './dist',
       filename: '[name].js',
       publicPath: '/',
     },
